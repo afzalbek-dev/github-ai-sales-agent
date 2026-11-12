@@ -58,12 +58,19 @@ pip install -r requirements.txt
 ```
 
 ### 3. Configuration
-Set environment variables or edit the top of `agent.py`:
+Copy `.env.example` to `.env` and fill in your credentials (or export them as environment variables):
 ```bash
-export GITHUB_USER="afzalbek-dev"
-export GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
-export TELEGRAM_BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN"
-export ADMIN_TELEGRAM_ID="7196940979"
+cp .env.example .env
+```
+Variables in `.env`:
+```bash
+GITHUB_USER=afzalbek-dev
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
+ADMIN_TELEGRAM_ID=7196940979
+OWNER_CONTACT=@Obunachi786
+TELEGRAM_LINK=https://t.me/Obunachi786
+SCAN_INTERVAL_SECONDS=180
 ```
 
 ### 4. Running the Agent
@@ -77,6 +84,9 @@ Run as a continuous 24/7 background daemon:
 ```bash
 nohup python3 agent.py > agent_stdout.log 2>&1 &
 ```
+
+### 5. GitHub Actions (Serverless Mode)
+This repository includes a ready-to-use workflow template at [`docs/ai-sales-agent-workflow.yml`](docs/ai-sales-agent-workflow.yml). Copy it to `.github/workflows/ai-sales-agent.yml` and add `GEMINI_API_KEY`, `TELEGRAM_BOT_TOKEN`, and `ADMIN_TELEGRAM_ID` to your repository Secrets to run the agent automatically on `issues`, `issue_comment`, and scheduled cron triggers.
 
 ---
 
